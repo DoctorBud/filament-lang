@@ -17,19 +17,20 @@ import {createWriteStream, promises as fs} from 'fs'
 import {Parser, strip_under} from '../src/parser.js'
 import {is_canvas_result, is_image_result} from "../src/ast.js"
 import {make_standard_scope} from '../src/lang.js'
+import filament_grammar from '../src/filament.ohm.js'
 import {default as PImage} from "pureimage"
 import {l, mkdir} from './util.js'
 import {parse_markdown} from './markdown.js'
 
 
 async function eval_filament(doc) {
+    console.log('filament_grammar', filament_grammar)
 
 
     // l("evaluating all filament objects in",doc)
     let codeblocks = doc.filter(block => block.type === 'CODE' && block.language === 'filament')
     // l("codeblocks",codeblocks)
-    let filament_grammer = (await fs.readFile('src/filament.ohm')).toString()
-    let parser = new Parser(null,filament_grammer)
+    let parser = new Parser(null,filament_grammar)
 
     const lit = v => `<span class="literal">${v}</span>`
     const strlit = v => `<span class="literal">"${v}"</span>`

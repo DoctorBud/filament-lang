@@ -1,6 +1,6 @@
 import {Parser} from './parser.js'
 import {make_standard_scope} from './lang.js'
-// import source from "./filament.ohm"
+import source from "./filament.ohm.js"
 
 let scope
 let parser
@@ -10,6 +10,7 @@ export async function setup_parser(grammar_source) {
     if(!grammar_source && typeof source !== 'undefined') {
         grammar_source = source
     }
+    console.log('###grammar_source', grammar_source)
     parser = new Parser(scope, grammar_source)
 }
 
