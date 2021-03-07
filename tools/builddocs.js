@@ -24,8 +24,6 @@ import {parse_markdown} from './markdown.js'
 
 
 async function eval_filament(doc) {
-    console.log('filament_grammar', filament_grammar)
-
 
     // l("evaluating all filament objects in",doc)
     let codeblocks = doc.filter(block => block.type === 'CODE' && block.language === 'filament')
